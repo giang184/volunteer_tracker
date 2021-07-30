@@ -1,0 +1,16 @@
+body {
+  background-image: url("http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-3.jpg");
+}
+.container {
+  background-color:rgb(243, 230, 217);
+  margin-top: 70px;
+  margin-bottom: 70px;
+  min-height: 80vh;
+  padding-top: 30px;
+  scroll-padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.navbar{
+  background-color:rgb(70, 66, 54);
+}
