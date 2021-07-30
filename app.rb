@@ -17,6 +17,9 @@ get('/projects') do
   erb(:projects)
 end
 
-get ('/trains/new') do
-  erb(:new_project)
+post ('/projects') do
+  title = params[:title]
+  project = Project.new({:title => title, :id => nil})
+  project.save
+  redirect to('/')
 end
