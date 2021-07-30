@@ -61,7 +61,7 @@ class Volunteer
 
   def self.find_by_project(prj_id)
     volunteers = []
-    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{alb_id};")
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{prj_id};")
     returned_volunteers.each() do |volunteer|
       name = volunteer.fetch("name")
       id = volunteer.fetch("id").to_i
