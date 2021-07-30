@@ -1,19 +1,38 @@
 <div class="row">
-  <div class="col-sm-5">
+  <div class="col-sm-4">
     <h3>Current Projects:</h3>
 
     <% if @projects.any? %>
-      <ul>
+      <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Project Title</th>
+          <th>Volunteers</th>
+        </tr>
+      </thead>
+      <tbody>
         <% @projects.each do |project| %>
-          <li><a href="/projects/<%= project.id %>"><%= project.title %></a></li>
+          <tr>
+            <td><a href="/projects/<%= project.id %>"><%= project.title %></td>
+            <td>
+              <% if project.volunteers.any? %>
+                <ul>
+                  <% project.volunteers.each do |volunteer| %>
+                    <li><%= volunteer.name %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </ul>
+        </tbody>
+      </table>
     <% else %>
       <p>There are currently no projects available.</p>
     <% end %>
   </div>
-  
-  <div class="col-sm-5">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-3">
     <h3>Add a project</h3>
     <br>
     <form action="/projects" method="post">

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-4">
+
+    <% if @volunteers.any? %>
+      <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Volunteer Name</th>
+          <th>Project Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @volunteers.each do |volunteer| %>
+          <tr>
+            <td><a href="/projects/<%= volunteer.project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></td>
+            <td><a href="/projects/<%= volunteer.project.id %>"><%= volunteer.project.title %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>There are currently no volunteers registered.</p>
+    <% end %>
+  </div>
+</div>

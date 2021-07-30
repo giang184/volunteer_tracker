@@ -9,12 +9,17 @@ require('./lib/volunteer')
 DB = PG.connect({ dbname: 'volunteer_tracker', host: 'db', user: 'postgres', password: 'password' })
 
 get '/' do
-  redirect to('/projects')
+  erb(:projects)
 end
 
 get('/projects') do
   @projects = Project.all
   erb(:projects)
+end
+
+get ('/volunteers') do
+  @volunteers = Volunteer.all
+  erb(:volunteers)
 end
 
 post ('/projects') do
@@ -71,3 +76,4 @@ delete ('/projects/:id/volunteers/:volunteer_id') do
   @project = Project.find(params[:id].to_i())
   erb(:project)
 end
+
