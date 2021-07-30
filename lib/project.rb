@@ -1,9 +1,9 @@
 class Project
-  attr_accessor :name
+  attr_accessor :title
   attr_reader :id
 
   def initialize(attributes)
-    @name = attributes.fetch(:name)
+    @title = attributes.fetch(:title)
     @id = attributes.fetch(:id)
   end
 
@@ -11,20 +11,20 @@ class Project
     returned_projects = DB.exec("SELECT * FROM projects;")
     projects = []
     returned_projects.each() do |project|
-      name = project.fetch("name")
+      title = project.fetch("title")
       id = project.fetch("id").to_i
-      projects.push(Project.new({:name => name, :id => id}))
+      projects.push(Project.new({:title => title, :id => id}))
     end
     projects
   end
 
   def save
-    result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
 
   def ==(project_to_compare)
-    self.name() == project_to_compare.name()
+    self.title() == project_to_compare.title()
   end
 
   def self.clear
@@ -33,14 +33,14 @@ class Project
 
   def self.find(id)
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
-    name = project.fetch("name")
+    title = project.fetch("title")
     id = project.fetch("id").to_i
-    Project.new({:name => name, :id => id})
+    Project.new({:title => title, :id => id})
   end
 
-  def update(name)
-    @name = name
-    DB.exec("UPDATE projects SET name = '#{@name}' WHERE id = #{@id};")
+  def update(title)
+    @title = title
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
   end
 
   def delete
