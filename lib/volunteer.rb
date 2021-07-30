@@ -37,7 +37,7 @@ class Volunteer
     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
     if volunteer
       name = volunteer.fetch("name")
-      project_id = song.fetch("project_id").to_i
+      project_id = volunteer.fetch("project_id").to_i
       id = volunteer.fetch("id").to_i
       Volunteer.new({:name => name, :project_id => project_id, :id => id})
     else
