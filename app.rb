@@ -9,7 +9,7 @@ require('./lib/volunteer')
 DB = PG.connect({ dbname: 'volunteer_tracker', host: 'db', user: 'postgres', password: 'password' })
 
 get '/' do
-  erb(:projects)
+  redirect to('/projects')
 end
 
 get('/projects') do
@@ -26,7 +26,7 @@ post ('/projects') do
   title = params[:title]
   project = Project.new({:title => title, :id => nil})
   project.save
-  redirect to('/')
+  redirect to('/projects')
 end
 
 get ('/projects/:id') do
