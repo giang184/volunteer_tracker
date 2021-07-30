@@ -53,7 +53,21 @@ post ('/projects/:id/volunteers') do
   erb(:project)
 end
 
-# get ('/trains/:id/cities/:city_id') do
-#   @city = City.find(params[:city_id].to_i())
-#   redirect to ("/cities/#{params[:city_id].to_i()}")
-# end
+get ('/projects/:id/volunteers/:volunteer_id') do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  erb(:volunteer)
+end
+
+patch ('/projects/:id/volunteers/:volunteer_id') do
+  @project = Project.find(params[:id].to_i())
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  @volunteer.update(params[:name], @project.id)
+  erb(:project)
+end
+
+delete ('/projects/:id/volunteers/:volunteer_id') do
+  volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  volunteer.delete
+  @project = Project.find(params[:id].to_i())
+  erb(:project)
+end
