@@ -3,9 +3,11 @@ require 'sinatra/reloader'
 also_reload 'lib/**/*.rb'
 require 'pry'
 require "pg"
+require('./lib/album')
+require('./lib/song')
 
 DB = PG.connect({ dbname: 'volunteer_tracker', host: 'db', user: 'postgres', password: 'password' })
 
 get '/' do
-  "This is connected to the database #{DB.db}."
+  redirect to('/projects')
 end
